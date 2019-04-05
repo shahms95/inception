@@ -13,7 +13,7 @@ sgd = optimizers.SGD(lr=0.01, clipnorm=1.)
 
 model.compile(sgd, loss='categorical_crossentropy')
 
-ROOT_DIR = '../../../var/lib/nova/imagenet/ILSVRC/Data/CLS-LOC/'
+ROOT_DIR = '/var/lib/nova/imagenet/ILSVRC/Data/CLS-LOC/'
 
 
 train_datagen  = ImageDataGenerator()
