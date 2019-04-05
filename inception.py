@@ -16,8 +16,8 @@ model.compile(sgd, loss='categorical_crossentropy')
 ROOT_DIR = '../../../var/lib/nova/imagenet/ILSVRC/Data/CLS-LOC/'
 
 
-# train_datagen  = ImageDataGenerator()
-# test_datagen = ImageDataGenerator()
+train_datagen  = ImageDataGenerator()
+test_datagen = ImageDataGenerator()
     
 img_rows, img_cols = 299,299
 train_generator = train_datagen.flow_from_directory(
