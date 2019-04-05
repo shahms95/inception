@@ -26,11 +26,15 @@ train_generator = train_datagen.flow_from_directory(
         batch_size=32,
         class_mode='categorical')
 
+print("Train Generator's work is done!")
+
 validation_generator = test_datagen.flow_from_directory(
         ROOT_DIR + 'val/',
         target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
         batch_size=32,
         class_mode='categorical')
+
+print("Validation Generator's work is done!")
 
 model.fit_generator(
         train_generator,
