@@ -19,7 +19,7 @@ ROOT_DIR = '/var/lib/nova/imagenet/ILSVRC/Data/CLS-LOC/'
 train_datagen  = ImageDataGenerator()
 test_datagen = ImageDataGenerator()
     
-img_rows, img_cols = 299,299
+img_rows, img_cols = 299,299 # 299 for inception, 224 for VGG and Resnet
 train_generator = train_datagen.flow_from_directory(
         ROOT_DIR + 'train/',
         target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
@@ -39,7 +39,8 @@ print("Validation Generator's work is done!")
 model.fit_generator(
         train_generator,
         steps_per_epoch=10,
-        epochs=10, validation_data=validation_generator
+        epochs=10, validation_data=validation_generator,
+        validation_steps=50
         )
 
 # res = model.evaluate(x = np.array(data), y = np.array(label))
