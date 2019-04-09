@@ -9,7 +9,7 @@ import numpy as np
 
 config = tf.ConfigProto( device_count = {'GPU': 1 } ) 
 sess = tf.Session(config=config) 
-keras.backend.set_session(sess)
+K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
 
