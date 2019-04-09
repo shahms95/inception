@@ -1,9 +1,15 @@
+import tensorflow as tf
 from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras.applications.inception_v3 import InceptionV3
 from keras import optimizers
 import utils
 import numpy as np
+
+
+config = tf.ConfigProto( device_count = {'GPU': 1 } ) 
+sess = tf.Session(config=config) 
+keras.backend.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
 
@@ -19,7 +25,7 @@ ROOT_DIR = '/var/lib/nova/imagenet/ILSVRC/Data/CLS-LOC/'
 train_datagen  = ImageDataGenerator()
 test_datagen = ImageDataGenerator()
     
-img_rows, img_cols = 299,299 # 299 for inception, 224 for VGG and Resnet
+img_rows, img_cols = 299,299 # 299x299 for inception, 224x224 for VGG and Resnet
 train_generator = train_datagen.flow_from_directory(
         ROOT_DIR + 'train/',
         target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
