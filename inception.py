@@ -1,3 +1,4 @@
+#!/bin/python
 import tensorflow as tf
 from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
@@ -19,7 +20,8 @@ sgd = optimizers.SGD(lr=0.01, clipnorm=1.)
 
 model.compile(sgd, loss='categorical_crossentropy')
 
-ROOT_DIR = '~/imagenet-project/ILSVRC/Data/CLS-LOC/'
+# ROOT_DIR = '~/imagenet-project/ILSVRC/Data/CLS-LOC/'
+ROOT_DIR = '/users/nickdaly/imagenet-project/ILSVRC/Data/CLS-LOC/'
 
 
 train_datagen  = ImageDataGenerator()
