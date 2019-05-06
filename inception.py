@@ -9,7 +9,9 @@ import numpy as np
 
 
 config = tf.ConfigProto( device_count = {'GPU': 1 } ) 
-sess = tf.Session(config=config) 
+# sess = tf.Session(config=config) 
+
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
