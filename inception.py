@@ -1,4 +1,4 @@
-#!/bin/python
+
 import tensorflow as tf
 from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
