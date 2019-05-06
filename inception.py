@@ -17,6 +17,10 @@ K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
 
+#This makes the model a multi-GPU model where G is the number of GPUs in the machine
+G = 4
+model = multi_gpu_model(model, gpus=G)
+
 # print(model.summary())
 
 sgd = optimizers.SGD(lr=0.01, clipnorm=1.)
