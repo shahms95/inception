@@ -8,8 +8,8 @@ from keras.utils.training_utils import multi_gpu_model
 import utils
 import numpy as np
 
-K.tensorflow_backend._get_available_gpus()
-config = tf.ConfigProto( device_count = {'GPU': 1 } ) 
+# K.tensorflow_backend._get_available_gpus()
+config = tf.ConfigProto( device_count = {'GPU': 2 } ) 
 
 sess = tf.Session(config=config) 
 # sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
@@ -20,7 +20,7 @@ model = InceptionV3(include_top=True, weights=None)
 
 #This makes the model a multi-GPU model where G is the number of GPUs in the machine
 G = 4
-model = multi_gpu_model(model, gpus=G)
+# model = multi_gpu_model(model, gpus=G)
 
 # print(model.summary())
 
