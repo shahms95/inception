@@ -7,7 +7,7 @@ from keras import optimizers
 from keras.utils.training_utils import multi_gpu_model
 import utils
 import numpy as np
-
+import tkinter
 # K.tensorflow_backend._get_available_gpus()
 config = tf.ConfigProto( device_count = {'GPU': 2 } ) 
 
