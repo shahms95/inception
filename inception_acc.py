@@ -43,7 +43,7 @@ img_rows, img_cols = 299,299 # 299x299 for inception, 224x224 for VGG and Resnet
 train_generator = train_datagen.flow_from_directory(
         ROOT_DIR + 'train/',
         target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
-        batch_size=32,
+        batch_size=128,
         class_mode='categorical')
 
 print("Train Generator's work is done!")
@@ -51,7 +51,7 @@ print("Train Generator's work is done!")
 validation_generator = test_datagen.flow_from_directory(
         ROOT_DIR + 'val/',
         target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
-        batch_size=32,
+        batch_size=128,
         class_mode='categorical')
 
 print("Validation Generator's work is done!")
