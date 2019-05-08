@@ -52,6 +52,7 @@ test_datagen = ImageDataGenerator()
 img_rows, img_cols = 299,299 # 299x299 for inception, 224x224 for VGG and Resnet
 
 for gpu in args.gpu:
+    print("Entering GPU : {}".format(gpu))
     with tf.device('/gpu:{}'.format(gpu)):
         train_generator = train_datagen.flow_from_directory(
                 ROOT_DIR + 'train/',
