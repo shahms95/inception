@@ -9,11 +9,12 @@ import argparse
 import os 
 
 parser = argparse.ArgumentParser()
-
-
+parser.add_argument("-g", "--gpu", type=int, default=0,
+                    help="The ID of GPU to be used; default = 0")
+args = parser.parse_args() 
 config = tf.ConfigProto() 
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
+os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
 print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
 
 config.gpu_options.allow_growth=True
