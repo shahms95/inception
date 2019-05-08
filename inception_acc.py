@@ -5,9 +5,13 @@ from keras.applications.inception_v3 import InceptionV3
 from keras import optimizers
 import numpy as np
 import CallBack
+import argparse
 
-
-config = tf.ConfigProto( device_count = {'GPU': 1 } ) 
+parser = argparse.ArgumentParser()
+parser.add_argument("-g", "--gpu", type=int, default=1,
+                    help="The number of GPUs to use; default 1")
+args = parser.parse_args()
+config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
 sess = tf.Session(config=config) 
 K.set_session(sess)
 
