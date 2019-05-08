@@ -9,22 +9,22 @@ import argparse
 import os 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-g", "--gpu", nargs='*', type=int, default=0,
-                    help="The IDs of GPUs to be used; default = 0")
-parser.add_argument("-b", "--bsize", type=int, default=32,
-                    help="The Batch size to be used; default = 32")
-args = parser.parse_args()
+# parser.add_argument("-g", "--gpu", nargs='*', type=int, default=0,
+#                     help="The IDs of GPUs to be used; default = 0")
+# parser.add_argument("-b", "--bsize", type=int, default=32,
+#                     help="The Batch size to be used; default = 32")
+# args = parser.parse_args()
 
-print("List of GPUs specified : ", args.gpu)
+# print("List of GPUs specified : ", args.gpu)
 # config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
 
 
 config = tf.ConfigProto() 
 
-cvd= str(args.gpu[0])
+# cvd= str(args.gpu[0])
 
-for i in range(1,len(args.gpu)):
-    cvd = cvd + "," + args.gpu[i]
+# for i in range(1,len(args.gpu)):
+    # cvd = cvd + "," + args.gpu[i]
 
 # os.environ["CUDA_VISIBLE_DEVICES"]=cvd
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
@@ -69,8 +69,8 @@ validation_generator = test_datagen.flow_from_directory(
 print("Validation Generator's work is done!")
 
 
-train_gens = tf.split(train_generator, len(args.gpu))
-validation_gens = tf.split(validation_generator, len(args.gpu))
+# train_gens = tf.split(train_generator, len(args.gpu))
+# validation_gens = tf.split(validation_generator, len(args.gpu))
 
 # for i in len(args.gpu):
 
@@ -79,9 +79,9 @@ validation_gens = tf.split(validation_generator, len(args.gpu))
 # with tf.device('/gpu:%d'%args.gpu[i] ):
 # with tf.device('/gpu:0' ):
 history = model.fit_generator(
-        train_gens[i],
+        train_generator,
         steps_per_epoch=2000,
-        epochs=12, validation_data=validation_gens[i],
+        epochs=12, validation_data=validation_generator,
         validation_steps=50,
         verbose = 1
         )
