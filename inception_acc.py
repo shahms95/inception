@@ -27,7 +27,7 @@ for i in range(1,len(args.gpu)):
     cvd = cvd + "," + args.gpu[i]
 
 # os.environ["CUDA_VISIBLE_DEVICES"]=cvd
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
 
 config.gpu_options.allow_growth=True
