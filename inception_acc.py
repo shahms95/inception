@@ -21,12 +21,12 @@ print("List of GPUs specified : ", args.gpu)
 
 config = tf.ConfigProto() 
 
-# cvd= str(args.gpu[0])
+cvd= str(args.gpu[0])
 
-# for i in range(1,len(args.gpu)):
-    # cvd = cvd + "," + args.gpu[i]
+for i in range(1,len(args.gpu)):
+    cvd = cvd + "," + args.gpu[i]
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2,3" 
+os.environ["CUDA_VISIBLE_DEVICES"]=cvd
 print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
 
 config.gpu_options.allow_growth=True
@@ -72,10 +72,10 @@ train_gens = tf.split(train_generator, len(args.gpu))
 validation_gens = tf.split(validation_generator, len(args.gpu))
 
 # for i in len(args.gpu):
-print("Entering GPU : {}".format(args.gpu[i]))
 
-for i in range(2,4):
-    with tf.device('/gpu:%d'%i ):
+for i in range(len(args.gpu)):
+    print("Entering GPU : {}".format(args.gpu[i]))
+    with tf.device('/gpu:%d'%args.gpu[i] ):
         history = model.fit_generator(
                 train_gens[i],
                 steps_per_epoch=2000,
