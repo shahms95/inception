@@ -20,7 +20,7 @@ print("Number of GPUs specified : ", args.gpu)
 
 
 config = tf.ConfigProto() 
-os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3" 
+os.environ["CUDA_VISIBLE_DEVICES"]="1,2,3" 
 config.gpu_options.allow_growth=True
 
 sess = tf.Session(config=config) 
@@ -43,7 +43,7 @@ test_datagen = ImageDataGenerator()
     
 img_rows, img_cols = 299,299 # 299x299 for inception, 224x224 for VGG and Resnet
 
-with tf.device('/gpu:1'):
+with tf.device('/gpu:2'):
     train_generator = train_datagen.flow_from_directory(
             ROOT_DIR + 'train/',
             target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
