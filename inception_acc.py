@@ -18,9 +18,11 @@ print("Number of GPUs specified : ", args.gpu)
 
 
 config = tf.ConfigProto() 
- os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="0,1" 
+config.gpu_options.allow_growth=True
 
 sess = tf.Session(config=config) 
+
 K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
