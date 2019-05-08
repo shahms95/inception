@@ -9,8 +9,8 @@ import argparse
 import os 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-g", "--gpu", nargs='*', type=int, default=1,
-                    help="The IDs of GPUs to be used; default = 1")
+parser.add_argument("-g", "--gpu", nargs='*', type=int, default=0,
+                    help="The IDs of GPUs to be used; default = 0")
 parser.add_argument("-b", "--bsize", type=int, default=32,
                     help="The Batch size to be used; default = 32")
 args = parser.parse_args()
@@ -27,6 +27,8 @@ for i in range(1,len(args.gpu)):
     cvd = cvd + "," + args.gpu[i]
 
 os.environ["CUDA_VISIBLE_DEVICES"]=cvd 
+print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
+
 config.gpu_options.allow_growth=True
 
 sess = tf.Session(config=config) 
