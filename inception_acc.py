@@ -6,6 +6,7 @@ from keras import optimizers
 import numpy as np
 import CallBack
 import argparse
+import os 
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", "--gpu", type=int, default=1,
@@ -13,7 +14,12 @@ parser.add_argument("-g", "--gpu", type=int, default=1,
 args = parser.parse_args()
 
 print("Number of GPUs specified : ", args.gpu)
-config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
+# config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
+
+
+config = tf.ConfigProto() 
+ os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 sess = tf.Session(config=config) 
 K.set_session(sess)
 
