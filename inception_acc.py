@@ -51,29 +51,33 @@ test_datagen = ImageDataGenerator()
     
 img_rows, img_cols = 299,299 # 299x299 for inception, 224x224 for VGG and Resnet
 
-for gpu in args.gpu:
-    print("Entering GPU : {}".format(gpu))
-    with tf.device('/gpu:{}'.format(gpu)):
-        train_generator = train_datagen.flow_from_directory(
-                ROOT_DIR + 'train/',
-                target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
-                batch_size=args.bsize,
-                class_mode='categorical')
+train_generator = train_datagen.flow_from_directory(
+        ROOT_DIR + 'train/',
+        target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
+        batch_size=args.bsize,
+        class_mode='categorical')
 
-        print("Train Generator's work is done!")
+print("Train Generator's work is done!")
 
-        validation_generator = test_datagen.flow_from_directory(
-                ROOT_DIR + 'val/',
-                target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
-                batch_size=args.bsize,
-                class_mode='categorical')
+validation_generator = test_datagen.flow_from_directory(
+        ROOT_DIR + 'val/',
+        target_size=(img_rows, img_cols),#The target_size is the size of your input images,every image will be resized to this size
+        batch_size=args.bsize,
+        class_mode='categorical')
 
-        print("Validation Generator's work is done!")
+print("Validation Generator's work is done!")
 
+
+train_gens = tf.split(train_generator, len(args.gpu))
+validation_gens = tf.split(validation_generator, len(args.gpu))
+
+for i in len(args.gpu):
+    print("Entering GPU : {}".format(args.gpu[i]))
+    with tf.device('/gpu:{}'.format(args.gpu[i])):
         history = model.fit_generator(
-                train_generator,
+                train_gens[i],
                 steps_per_epoch=2000,
-                epochs=12, validation_data=validation_generator,
+                epochs=12, validation_data=validation_gens[i],
                 validation_steps=50,
                 verbose = 1
                 )
