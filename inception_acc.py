@@ -9,8 +9,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", "--gpu", type=int, default=1,
-                    help="The number of GPUs to use; default 1")
+                    help="The number of GPUs to be used; default = 1")
 args = parser.parse_args()
+
+print("Number of GPUs specified : ", args.gpu)
 config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
 sess = tf.Session(config=config) 
 K.set_session(sess)
