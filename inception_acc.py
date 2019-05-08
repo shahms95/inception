@@ -11,9 +11,9 @@ import os
 parser = argparse.ArgumentParser()
 # parser.add_argument("-g", "--gpu", nargs='*', type=int, default=0,
 #                     help="The IDs of GPUs to be used; default = 0")
-# parser.add_argument("-b", "--bsize", type=int, default=32,
-#                     help="The Batch size to be used; default = 32")
-# args = parser.parse_args()
+parser.add_argument("-b", "--bsize", type=int, default=32,
+                    help="The Batch size to be used; default = 32")
+args = parser.parse_args()
 
 # print("List of GPUs specified : ", args.gpu)
 # config = tf.ConfigProto( device_count = {'GPU': args.gpu } ) 
