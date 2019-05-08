@@ -74,16 +74,17 @@ validation_gens = tf.split(validation_generator, len(args.gpu))
 
 # for i in len(args.gpu):
 
-for i in range(len(args.gpu)):
-    print("Entering GPU : {}".format(args.gpu[i]))
-    with tf.device('/gpu:%d'%args.gpu[i] ):
-        history = model.fit_generator(
-                train_gens[i],
-                steps_per_epoch=2000,
-                epochs=12, validation_data=validation_gens[i],
-                validation_steps=50,
-                verbose = 1
-                )
+# for i in range(len(args.gpu)):
+    # print("Entering GPU : {}".format(args.gpu[i]))
+# with tf.device('/gpu:%d'%args.gpu[i] ):
+# with tf.device('/gpu:0' ):
+history = model.fit_generator(
+        train_gens[i],
+        steps_per_epoch=2000,
+        epochs=12, validation_data=validation_gens[i],
+        validation_steps=50,
+        verbose = 1
+        )
 
 # print(history.history)
 # print(history.epoch)
