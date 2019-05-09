@@ -3,6 +3,7 @@ from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras.applications.inception_v3 import InceptionV3
 from keras import optimizers
+from keras.utils import multi_gpu_model
 import numpy as np
 import CallBack
 import argparse
