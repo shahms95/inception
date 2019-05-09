@@ -25,7 +25,7 @@ sess = tf.Session(config=config)
 K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
-model = multi_gpu_model(model, gpus=2)
+# model = multi_gpu_model(model, gpus=2)
 
 # print(model.summary())
 
