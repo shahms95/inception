@@ -8,6 +8,7 @@ import numpy as np
 import CallBack
 import argparse
 import os 
+import tkinter
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", "--gpu", type=int, default=0,
