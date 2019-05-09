@@ -15,7 +15,7 @@ args = parser.parse_args()
 config = tf.ConfigProto() 
 
 # os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
-print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
+# print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
 
 config.gpu_options.allow_growth=True
 
