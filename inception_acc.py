@@ -14,7 +14,7 @@ parser.add_argument("-g", "--gpu", type=int, default=0,
 args = parser.parse_args() 
 config = tf.ConfigProto() 
 
-os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
+# os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
 print("CUDA visible devices : ", os.environ["CUDA_VISIBLE_DEVICES"])
 
 config.gpu_options.allow_growth=True
@@ -24,6 +24,7 @@ sess = tf.Session(config=config)
 K.set_session(sess)
 
 model = InceptionV3(include_top=True, weights=None)
+model = multi_gpu_model(model, gpus=2)
 
 # print(model.summary())
 
